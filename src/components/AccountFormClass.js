@@ -1,39 +1,48 @@
-import {useState} from 'react'
+import React from 'react'
 import { Form } from 'semantic-ui-react'
 
-const AccountForm = () => {
-    const [username, setUserName] = useState('')
-    const [membershipLevel, setMembershipLevel] = useState('')
-
-    const handleSubmit = (e) => {
+class AccountFormClass extends React.Component {
+    state = {
+        username:'',
+        membershipLevel:''
+    }
+    handleSubmit = (e) => {
+        const {username, membershipLevel} = this.state
         e.preventDefault()
         console.log(username)
         console.log(membershipLevel)
     }
+    handleChange = (e, {value, name}) => {
+        this.setState({[name]: value})
+    }
 
+    render () {
+    const {username, membershipLevel} = this.state
     return (
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={this.handleSubmit}>
             <Form.Input 
                 label = 'Unsername'
                 type = 'text'
+                name='username'
                 value = {username}
-                onChange = {(e, {value}) => setUserName(value)}
+                onChange = {this.handleChange}
             />
             <Form.Select 
                 label = 'Mebership Level'
+                name='membershipLevel'
                 value = {membershipLevel}
                 options = {membershipOptions}
-                onChange = {(e, {value}) => setMembershipLevel(value)}
+                onChange = {this.handleChange}
             />
             <Form.Button primary>Save</Form.Button>
         </Form>
     )
+    }
 }
-
 const membershipOptions = [
     { key: 'b', value: 'Bronze', text: 'Bronze' },
     { key: 's', value: 'Silver', text: 'Silver' },
     { key: 'g', value: 'Gold', text: 'Gold' },
 ]
 
-export default AccountForm
+export default AccountFormClass
