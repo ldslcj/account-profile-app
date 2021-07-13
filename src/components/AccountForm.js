@@ -1,9 +1,11 @@
-import {useState} from 'react'
+import {useContext, useState} from 'react'
+import {AccountContext} from '../provider/AccountProvider'
 import { Form } from 'semantic-ui-react'
 
 const AccountForm = () => {
-    const [username, setUserName] = useState('')
-    const [membershipLevel, setMembershipLevel] = useState('')
+    const value = useContext(AccountContext)
+    const [username, setUserName] = useState(value.username)
+    const [membershipLevel, setMembershipLevel] = useState(value.membershipLevel)
 
     const handleSubmit = (e) => {
         e.preventDefault()

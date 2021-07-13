@@ -15,7 +15,7 @@ function App() {
           <Route 
             exact 
             path='/account/profile' 
-            render={()=> <AccountProfile x='yo'/>}
+            render={()=> <AccountProfile title='yo'/>}
             
           />
         </Switch>
