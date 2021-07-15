@@ -5,10 +5,11 @@ import { AccountConsumer, AccountContext } from '../provider/AccountProvider'
 class AccountFormClass extends React.Component {
     state = {
         username: this.props.username,
-        membershipLevel: this.props.membershipLevel
+        membershipLevel: this.props.membershipLevel,
+        avatar: this.props.avatar
     }
     handleSubmit = (e) => {
-        const {username, membershipLevel} = this.state
+        const {username, membershipLevel, avatar} = this.state
         e.preventDefault()
         console.log(username)
         console.log(membershipLevel)
@@ -37,6 +38,13 @@ class AccountFormClass extends React.Component {
                 options = {membershipOptions}
                 onChange = {this.handleChange}
             />
+            <Form.Select 
+                label = 'Avatar'
+                type = 'text'
+                name='avatar'
+                value = {avatar}
+                onChange = {this.handleChange}
+            />
             <Form.Button primary>Save</Form.Button>
         </Form>
         </>
@@ -50,7 +58,8 @@ const connectedAccountForm  = (props) => {
             {value => (<AccountFormClass
                             {...props}
                             username={value.username}
-                            membershipLevel={value.membershipLevel} />)}
+                            membershipLevel={value.membershipLevel}
+                            avatar={avatar} />)}
         </AccountConsumer>
     )
 }

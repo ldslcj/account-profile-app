@@ -3,7 +3,7 @@ import { useContext } from 'react'
 import {AccountContext} from '../provider/AccountProvider'
 
 const Account = () => {
-    const {username, dateJoined, membershipLevel} = useContext(AccountContext)
+    const {username, dateJoined, membershipLevel, avatar} = useContext(AccountContext)
     return (
         <Card>
             <Card.Content>
@@ -12,6 +12,9 @@ const Account = () => {
             </Card.Content>
             <Card.Content>
                 <p>Membership level : {membershipLevel}</p>
+            </Card.Content>
+            <Card.Content>
+                <p>User Avatar: : {avatar}</p>
             </Card.Content>
         </Card>
     )
